@@ -1,0 +1,15 @@
+{
+  "name": "@robbiethegeek/how-to-npm",
+  "version": "1.0.0",
+  "description": "Coolness incarnate",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": "Robbie Holmes <robbie@robbie.net>",
+  "license": "ISC",
+  "dependencies": {
+    "@linclark/pkg": "^1.0.2"
+  },
+  "repository": "http://gitstuffs.com/robbie"
+}
