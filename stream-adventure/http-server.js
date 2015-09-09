@@ -1,14 +1,20 @@
-'use strict'
-
 var http = require('http');
-var through = require('through');
+var fs = require('fs');
+var through = require('through2');
 
 var server = http.createServer(function(req, res){
 	if (req.method === 'POST'){
-		req.pipe(through(function(buf){
-			this.queue(buf.toString().toUpperCase());
-		}).pipe(res));
+		req.pipe(through(write, end)).pipe(res);
 	} else {
 		res.end("send me POSTs")
 	}
 }).listen(parseInt(process.argv[2]));
+
+var write = function(buf, _, next){
+	this.push(buf.toString().toUpperCase());
+	next();
+}
+
+var end = function(done){
+	done();
+}

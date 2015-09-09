@@ -1,15 +1,16 @@
 'use strict'
 
-var through = require('through');
+var through = require('through2');
 var split = require('split');
 var count = 0;
-var tr = through(function(line){
+var tr = through(function(line, _, next){
 	if (count % 2){
-		this.queue(line.toString().toUpperCase() + '\n');
+		this.push(line.toString().toUpperCase() + '\n');
 	} else {
-		this.queue(line.toString().toLowerCase() + '\n');
+		this.push(line.toString().toLowerCase() + '\n');
 	}
 	++count;
+	next();
 });
 
 process.stdin.pipe(split()).pipe(tr).pipe(process.stdout);
