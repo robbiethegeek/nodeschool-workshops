@@ -1,5 +1,3 @@
-'use strict'
-
 var trumpet = require('trumpet');
 var through = require('through2');
 var tr = trumpet();
