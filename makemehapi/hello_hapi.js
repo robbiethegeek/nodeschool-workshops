@@ -10,7 +10,9 @@ server.route({
 	path: '/',
 	method: 'GET',
 	handler: function(request, reply){
-		reply("Hello Hapi");
+		reply("Hello hapi");
 	}
 })
-server.start()
+server.start(function(){
+	console.log('Server running at:', server.info.uri);
+})
