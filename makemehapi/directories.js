@@ -8,14 +8,23 @@ server.connection({
   port: Number(process.argv[2] || 8080)
 });
 
-server.route({
-  path: '/foo/bar/baz/{filename}',
-  method: 'GET',
-  handler: {
-    directory: {
-      path: path.join(__dirname, '/public')
-    }
+server.register(require('inert'), function(err){
+  if (err) {
+    throw err;
   }
+  server.route({
+    path: '/foo/bar/baz/{filename}',
+    method: 'GET',
+    handler: {
+      directory: {
+        path: path.join(__dirname, '/public')
+      }
+    }
+  });
+  server.start(function(err){
+    if (err) {
+      throw err;
+    }
+    console.log("Server running on: " + server.info.uri);
+  });
 });
-
-server.start();
