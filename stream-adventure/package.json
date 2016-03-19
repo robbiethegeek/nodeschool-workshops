@@ -1,24 +1,5 @@
 {
-  "name": "stream-adventure",
-  "version": "1.0.0",
-  "description": "My scripts for stream-adventure",
-  "main": "beep-boop.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "concat-stream": "^1.4.7",
-    "duplexer": "^0.1.1",
-    "duplexer2": "0.0.2",
-    "request": "^2.53.0",
-    "split": "^0.3.3",
-    "stream": "0.0.2",
-    "stream-combiner": "^0.2.1",
-    "through": "^2.3.6",
-    "through2": "^0.6.3",
-    "trumpet": "^1.7.0",
-    "websocket-stream": "^1.3.2"
+    "through2": "^2.0.1"
   }
 }
