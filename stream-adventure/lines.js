@@ -6,17 +6,19 @@ const through = require('through2');
 const end = function(done) {
     done();
 }
-let lineCount = 0;
+let lineCount = 1;
 const write = function(buffer, encoding, next) {
-    if (lineCount % 2){
-        buffer = buffer.toString().toUpperCase();
-    } else {
-        buffer = buffer.toString().toLowerCase()
-    }
+  let line = buffer.toString();
+  console.log(`${lineCount}:  ${line}`)
+  if (lineCount % 2) {
+    line = line.toLowerCase();
+  } else {
+    line = line.toUpperCase();
+  }
     this.push(buffer);
     lineCount++;
     next();
 };
 
 const tr = through(write, end);
-process.stdin.pipe(tr).pipe(process.stdout);
+process.stdin.pipe(split()).pipe(tr).pipe(process.stdout);
