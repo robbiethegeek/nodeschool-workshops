@@ -1,2 +1,2 @@
-var example = 1234567890;
+const example = 123456789
 console.log(example);

@@ -1,7 +1,5 @@
-var pets = ['cat', 'dog', 'rat'];
-
-pets.forEach(function(pet, index){
-    pets[index] = pet + 's';
-})
-
-console.log(pets)
+let pets = ['cat', 'dog', 'rat'];
+pets = pets.map((pet) => {
+  return `${pet}s`
+});
+console.log(pets);
