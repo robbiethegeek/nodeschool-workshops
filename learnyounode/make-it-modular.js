@@ -1,14 +1,6 @@
-var myModule = require('./my-module.js');
+const filterFiles = require('./myModule');
 
-var fileExt = process.argv[3];
-var filePath = process.argv[2];
-
-var callback = function(err, data){
-    if (err){
-        return err;
-    }
-    data.forEach(function(file){
-        console.log(file);
-    });
-};
-myModule(filePath, fileExt, callback)
+filterFiles(process.argv[2], process.argv[3], (err, files) => {
+  if (err) console.log(err);
+  files.map((file) => console.log(file));
+});

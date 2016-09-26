@@ -1,17 +1,12 @@
-var http = require('http');
-var bl = require('bl');
+const http = require('http');
 
-var url = process.argv[2];
-var responseData ='';
-http.get(url, function(response){
-   response.pipe(bl(function(err, data){
-   		if (err) {
-   			return console.error(err);
-   		}
-       responseData = data.toString();
-       console.log(responseData.length)
-       console.log(responseData)
-   }));
-    
-});
-
+let results = '';
+http.get(process.argv[2], (res) => {
+  res.setEncoding('utf8');
+  res.on('data', (data) => {
+    results += data;
+  });
+  res.on('end', () => {
+    console.log(`${results.length}\n${results}`);
+  })
+})

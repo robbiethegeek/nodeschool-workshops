@@ -1,13 +1,10 @@
-var fs = require('fs');
-var path = require('path')
-var fileExtension = process.argv[3];
-var filePath = process.argv[2];
+const fs = require('fs');
+const path = require('path');
 
-fs.readdir(filePath, function(err, list){
-    list.forEach(function(file){
-        if (path.extname(file) === "." + fileExtension){
-            console.log(file);
-        }
-    });
-
-})
+fs.readdir(process.argv[2], (err, files) => {
+  files.map((file) => {
+    if (path.extname(file) == `.${process.argv[3]}`) {
+      console.log(file);
+    }
+  })
+});

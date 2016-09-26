@@ -1,11 +1,15 @@
-var net = require('net');
+const net = require('net');
 
-var server = net.createServer(function(socket){
-	var date = new Date();
-	//"2013-07-06 17:42"
-	var output = date.getFullYear() + "-" + date.getMonth() + 1  + "-" + date.getDate() +
-		" " + date.getHours() + ":" + date.getMinutes() + "\n"
-	socket.write(output);
-	socket.end();
+const leftPad = (item) => {
+  return (item < 10)? `0${item}` : item;
+};
+const server = net.createServer((socket) => {
+  const date = new Date();
+  let dateStamp = `${date.getFullYear()}-`;
+  dateStamp += `${leftPad(date.getMonth() + 1)}-`;
+  dateStamp += `${leftPad(date.getDate())} `;
+  dateStamp +=  `${leftPad(date.getHours())}:${leftPad(date.getMinutes())}`;
+  socket.end(dateStamp + '\n')
 });
-server.listen(process.argv[2]);
+
+server.listen(Number(process.argv[2]));
