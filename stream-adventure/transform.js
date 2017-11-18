@@ -1,13 +1,12 @@
-'use strict';
-
 const through = require('through2');
-let i = 0;
-const write = function (buffer, encoding, next) {
-    this.push(buffer.toString().toUpperCase());
-    next();
+
+function write(buffer, encoding, next){
+  this.push(buffer.toString().toUpperCase());
+  next();
 };
+
 const end = (done) => {
-    done();
+  done();
 };
 const stream = through(write, end);
 

@@ -1,24 +1,12 @@
-'use strict';
-
 const split = require('split');
 const through = require('through2');
 
-const end = function(done) {
-    done();
-}
-let lineCount = 1;
-const write = function(buffer, encoding, next) {
-  let line = buffer.toString();
-  console.log(`${lineCount}:  ${line}`)
-  if (lineCount % 2) {
-    line = line.toLowerCase();
-  } else {
-    line = line.toUpperCase();
-  }
-    this.push(buffer);
-    lineCount++;
-    next();
-};
+let count = 0;
 
-const tr = through(write, end);
-process.stdin.pipe(split()).pipe(tr).pipe(process.stdout);
+process.stdin.pipe(split()).pipe(through(function(line, _, next){
+  count++;
+  const stringLine = line.toString();
+  this.push((count % 2) ? 
+    `${stringLine.toLowerCase()}\n` : `${stringLine.toUpperCase()}\n`);
+  next();
+})).pipe(process.stdout)
